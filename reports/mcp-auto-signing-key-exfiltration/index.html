@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src data:; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>An &quot;auto-signing&quot; MCP server sends your raw wallet private key to a remote server | SignWarden</title>
+  <meta name="description" content="gadgethumans-mcp, an npm package, tells developers it will let their AI agent &quot;auto-sign&quot; x402 micropayments. According to an analysis by Knostic Labs [1], instead of signing locally it puts the">
+  <link rel="canonical" href="https://signwarden.com/reports/mcp-auto-signing-key-exfiltration/">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="wordmark" href="/">SignWarden</a>
+      <nav aria-label="Page sections">
+        <a href="/#happened">What happened</a>
+        <a href="/#method">How we check</a>
+        <a href="/#numbers">Numbers</a>
+        <a href="/#limits">Limits</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="band">
+      <div class="wrap report-head">
+        <p class="crumb"><a href="/">SignWarden</a> / Incident write-up</p>
+        <h1>An "auto-signing" MCP server sends your raw wallet private key to a remote server</h1>
+        <p class="meta"><span>Published <time datetime="2026-09-29">2026-09-29</time></span> <span>Status: Ongoing; package still on npm</span></p>
+      </div>
+    </div>
+    <div class="wrap">
+      <article class="report">
+<h2 id="tl-dr">TL;DR</h2>
+<ul>
+<li><code>gadgethumans-mcp</code>, an npm package, tells developers it will let their AI agent "auto-sign" x402 micropayments. According to an analysis by Knostic Labs <a class="fn" href="#src-1">[1]</a>, instead of signing locally it puts the configured wallet private key, unchanged, into an HTTP header and sends it to its publisher's server on every recognized tool call. SignWarden did not download or run the package.</li>
+<li>It was downloaded 2,648 times between July 1 and September 28, 2026 <a class="fn" href="#src-2">[2]</a>. Downloads are not installs, and no stolen funds or victims have been identified <a class="fn" href="#src-1">[1]</a>.</li>
+<li>As of 2026-09-28, all 10 versions are still on npm and none is deprecated <a class="fn" href="#src-3">[3]</a>.</li>
+<li><strong>If you ever configured a key with this package, treat that key as compromised and move your assets to a new wallet.</strong></li>
+</ul>
+<h2 id="incident-card">Incident card</h2>
+<table>
+<thead><tr><th>Field</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>SignWarden ID</td><td>SW-MCP-2026-000006 (1.0.3), SW-MCP-2026-000007 (1.0.9). SignWarden flags versions 1.0.3 and 1.0.9 (named in Knostic's analysis); other versions not assessed</td></tr>
+<tr><td>Public analysis</td><td>2026-09-08, Knostic Labs <a class="fn" href="#src-1">[1]</a></td></tr>
+<tr><td>Ecosystem</td><td>npm / MCP server</td></tr>
+<tr><td>Protocol</td><td>x402 (machine-to-machine payments)</td></tr>
+<tr><td>Versions on npm</td><td>1.0.0–1.0.9 (10 versions); latest 1.0.9, published 2026-08-02 <a class="fn" href="#src-3">[3]</a></td></tr>
+<tr><td>Downloads</td><td>Jul 1,152 · Aug 1,175 · Sep 1–28 321 <a class="fn" href="#src-2">[2]</a></td></tr>
+<tr><td>Loss</td><td>None known <a class="fn" href="#src-1">[1]</a></td></tr>
+<tr><td>Technique</td><td>Malicious MCP server / private-key exfiltration</td></tr>
+<tr><td>Failed layer</td><td>Tool supply chain; key management</td></tr>
+</tbody>
+</table>
+<h2 id="timeline-utc">Timeline (UTC)</h2>
+<table>
+<thead><tr><th>Time</th><th>Event</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>2026-07-01 20:45</td><td>1.0.0 published; 1.0.1–1.0.3 follow the same day</td><td><a class="fn" href="#src-3">[3]</a></td></tr>
+<tr><td>2026-07-03</td><td>1.0.4 and 1.0.5 published</td><td><a class="fn" href="#src-3">[3]</a></td></tr>
+<tr><td>2026-08-02 08:17</td><td>1.0.9 published and tagged latest</td><td><a class="fn" href="#src-3">[3]</a></td></tr>
+<tr><td>2026-09-08</td><td>Knostic Labs publishes its analysis</td><td><a class="fn" href="#src-1">[1]</a></td></tr>
+<tr><td>2026-09-28</td><td>SignWarden reports the package to npm</td><td>SignWarden</td></tr>
+<tr><td>2026-09-28</td><td>All 10 versions still on npm; none deprecated</td><td><a class="fn" href="#src-3">[3]</a></td></tr>
+</tbody>
+</table>
+<h2 id="how-it-works">How it works</h2>
+<p>Steps 3–4 are based on Knostic Labs' analysis <a class="fn" href="#src-1">[1]</a>; SignWarden did not download or run the package.</p>
+<ol>
+<li><strong>The pitch.</strong> The package says that once a wallet private key is configured, the agent handles x402 payments "without any manual steps" <a class="fn" href="#src-1">[1]</a>.</li>
+<li><strong>Setup.</strong> A developer puts the key in an environment variable and connects the MCP server to their agent.</li>
+<li><strong>Exfiltration.</strong> According to Knostic <a class="fn" href="#src-1">[1]</a>, on every outbound request for a tool call it recognizes, the package copies the raw key into a custom HTTP header and sends it to its default endpoint on <code>gadgethumans[.]com</code> <a class="fn" href="#src-1">[1]</a>.</li>
+<li><strong>Result.</strong> Per the same analysis <a class="fn" href="#src-1">[1]</a>, the server receives a key that controls the entire wallet, not a single-use payment signature. No signing happens locally <a class="fn" href="#src-1">[1]</a>.</li>
+</ol>
+<p>We do not reproduce the package's code.</p>
+<h2 id="why-this-matters">Why this matters</h2>
+<p>x402 is built so that clients send <strong>signatures</strong>, never keys <a class="fn" href="#src-1">[1]</a>. "Auto-signing" implies the key stays on your machine. Here, the phrase covers the opposite.</p>
+<p>The deeper problem is where MCP servers run. They share the agent's environment and can read the same variables. Agent frameworks today don't restrict which tool can see a secret. And neither npm nor MCP directories check whether a package sends secrets off the machine: this one stayed downloadable for weeks after a public write-up <a class="fn" href="#src-1">[1]</a><a class="fn" href="#src-3">[3]</a>.</p>
+<h2 id="where-it-could-have-been-stopped">Where it could have been stopped</h2>
+<table>
+<thead><tr><th>Control</th><th>Why it didn't stop it</th><th>Effect if present</th></tr></thead>
+<tbody>
+<tr><td>Keep keys out of the agent environment (wallet-provider signing API or scoped permissions)</td><td>The package asked for the raw key</td><td>The package never sees the key</td></tr>
+<tr><td>Outbound allowlist for MCP servers</td><td>Any outbound connection allowed by default</td><td>Requests to unknown domains blocked</td></tr>
+<tr><td>Pre-install scanning of MCP packages for secret egress</td><td>None</td><td>Flagged before install</td></tr>
+<tr><td>Capped, expiring permissions instead of keys (e.g. ERC-7715)</td><td>Not used</td><td>A leak has a ceiling</td></tr>
+</tbody>
+</table>
+<h2 id="what-to-do">What to do</h2>
+<ul class="todos"><li class="todo">If you installed <code>gadgethumans-mcp</code> and set a key: rotate the key now and move your assets.</li>
+<li class="todo">Treat any MCP server or agent skill that asks for a raw private key as high-risk.</li>
+<li class="todo">Give agents a wallet provider's signing API or scoped permissions; keep private keys out of environment variables.</li>
+<li class="todo">Fund agent wallets with only what a task needs.</li>
+<li class="todo">Put MCP servers behind an outbound allowlist and log every outbound request.</li></ul>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Whether the other eight versions on npm also send the key. SignWarden flags versions 1.0.3 (SW-MCP-2026-000006) and 1.0.9 (SW-MCP-2026-000007), named in Knostic's analysis <a class="fn" href="#src-1">[1]</a>; other versions not assessed.</li>
+<li>Whether anyone lost funds; there is no evidence so far <a class="fn" href="#src-1">[1]</a>.</li>
+<li>Whether the publisher has responded. SignWarden reported the package to npm on 2026-09-28; no reply as of publication.</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ol class="sources">
+<li id="src-1">Knostic Labs, <a href="https://www.knostic.ai/blog/when-auto-signing-sends-your-wallet-private-key-to-a-remote-server-a-malicious-mcp-package-on-npm" rel="noopener noreferrer">When auto-signing sends your wallet private key to a remote server</a>, 2026-09-08.</li>
+<li id="src-2">npm downloads API, <a href="https://api.npmjs.org/downloads/range/2026-07-01:2026-09-28/gadgethumans-mcp" rel="noopener noreferrer">range 2026-07-01 to 2026-09-28</a>, queried 2026-09-28 22:34 UTC.</li>
+<li id="src-3">npm registry, gadgethumans-mcp, queried 2026-09-28 22:34 UTC.</li>
+</ol>
+        <p class="note">This write-up is based on public information and is provided for informational and research purposes only. It is not investment, legal, or security-assurance advice. Figures may be revised as new data emerges. No exploit code is included. If you are a party to this incident and have corrections, please contact SignWarden at security@signwarden.com.</p>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <h2 id="disclaimer">Disclaimer</h2>
+      <p>Information only. Not guaranteed to be complete, accurate or timely; it may contain errors or omissions. It is not investment, legal, security or other professional advice; please do not block, accuse or penalise anyone or any package or project based on this page alone. "Collected" means we curated and checked a public report; it does not mean SignWarden discovered, detected or independently verified the malicious behaviour, especially for entries from third-party sources such as OSV. Verdicts may be corrected or withdrawn. Names and trademarks of third parties (including OSV, OpenSSF, Wiz and Socket) belong to their owners and are cited only to identify data sources; no affiliation, partnership or endorsement is implied. To the extent permitted by law, we are not liable for any loss arising from use of, or inability to use, this information.</p>
+      <p class="product"><a href="https://doingnothingllc.com" rel="noopener noreferrer">SignWarden is a product of Doing Nothing LLC</a></p>
+      <p class="fine">No trackers, cookies, external fonts or scripts. <a href="/">Back to the home page</a></p>
+    </div>
+  </footer>
+</body>
+</html>
