@@ -108,7 +108,7 @@
           <li>Malicious or compromised packages, extensions and agent skills: impersonated names, or malicious versions published after an account takeover.</li>
           <li>Exfiltration of private keys or seed phrases.</li>
           <li>Malicious EIP-7702 delegations.</li>
-          <li>Tampering or credential theft by AI model relay (LLM API forwarding) services: <strong>under research; we do not claim to cover them and we do not claim to detect them.</strong></li>
+          <li>Tampering or credential theft by AI model relay (LLM API forwarding) services: <strong>under research. We collect a small set of indicator domains from one vendor threat report; we do not claim to detect malicious relay services.</strong></li>
         </ul>
       </section>
 
@@ -139,21 +139,21 @@
       <dl class="stats">
         <div>
           <dt>Incidents</dt>
-          <dd><span class="num">32</span><span class="unit">incidents</span><br>
+          <dd><span class="num">35</span><span class="unit">incidents</span><br>
             Real-world attacks or malicious campaigns with victims, or with malicious artifacts actually distributed, that we checked before recording them; one entry per incident. Research demonstrations, proofs of concept, disclosures, statistics and roundup reports are not counted.<br>
             <span class="src">Sources: vendor advisories, security press, academic papers, public on-chain data. Calculated 2026-09-29.</span></dd>
         </div>
         <div>
           <dt>Malicious names</dt>
-          <dd><span class="num">663</span><span class="unit">names</span><br>
-            Packages, extensions and agent skills that impersonate a legitimate name or are malicious by name. <strong>515 (77.7%) come from OSV / OpenSSF malicious-package reports</strong> (source: OSV; calculated 2026-09-29).<br>
+          <dd><span class="num">664</span><span class="unit">names</span><br>
+            Packages, extensions and agent skills that impersonate a legitimate name or are malicious by name. <strong>515 (77.6%) come from OSV / OpenSSF malicious-package reports</strong> (source: OSV; calculated 2026-09-29).<br>
             <span class="src">These are public reports we collected and checked: SignWarden's contribution is curation, verification, scoping and removing false positives. We did not obtain or run the malicious code of these packages, and these entries have no independent second source.</span></dd>
         </div>
         <div>
           <dt>Compromised legitimate packages</dt>
-          <dd><span class="num">1086</span><span class="unit">names</span><br>
+          <dd><span class="num">1085</span><span class="unit">names</span><br>
             The package itself is legitimate; only specific versions carry malicious code. We list only the affected versions and <strong>do not call the package itself malicious</strong>.<br>
-            <span class="src">Most of this category comes from large lists published by single external sources: 795 (73.2%) from Wiz's Shai-Hulud 2.0 affected-package list; 198 (18.2%) from Socket's Shai-Hulud report; another 45 from OSV. Calculated 2026-09-29.</span></dd>
+            <span class="src">Most of this category comes from large lists published by single external sources: 795 (73.3%) from Wiz's Shai-Hulud 2.0 affected-package list; 197 (18.2%) from Socket's Shai-Hulud report; another 45 from OSV. Calculated 2026-09-29.</span></dd>
         </div>
         <div>
           <dt>Malicious delegation contracts (EIP-7702)</dt>
@@ -163,8 +163,9 @@
         </div>
         <div>
           <dt>AI model relay services</dt>
-          <dd><span class="num">0</span><span class="unit">matchable</span><br>
-            Under research. No relay service is currently confirmed malicious with a matchable URL or domain; we do not claim to cover or detect them.</dd>
+          <dd><span class="num">6</span><span class="unit">indicator domains</span><br>
+            Collects 6 indicator domains from Anthropic's September 2026 threat report, tied to a fake AI-reselling operation. We do not claim to detect malicious relay services and did not discover these.<br>
+            <span class="src">Source: Anthropic's September 2026 threat report. Calculated 2026-09-29.</span></dd>
         </div>
       </dl>
       <!-- STATS:END -->
