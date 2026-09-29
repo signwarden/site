@@ -168,7 +168,7 @@ time { font-family: var(--mono); font-size: 0.95em; }
 @media (min-width: 46rem) { .cols { grid-template-columns: 1fr 1fr; gap: 2.2rem; } }
 .col { border-top: 2px solid var(--accent); padding-top: 0.7rem; }
 
-.contact { font-family: var(--mono); font-size: 1.02rem; word-break: break-all; }
+.contact { display: inline-block; padding: 0.4rem 0; font-family: var(--mono); font-size: 1.02rem; word-break: break-all; }
 
 footer { border-top: 2px solid var(--accent); background: var(--band); padding: 2rem 0 3rem; color: var(--muted); font-size: 0.93rem; }
 footer h2 { font-size: 1rem; color: var(--text); margin-bottom: 0.5rem; }
