@@ -42,7 +42,7 @@
       <article class="report">
 <h2 id="tl-dr">TL;DR</h2>
 <ul>
-<li><code>gadgethumans-mcp</code>, an npm package, tells developers it will let their AI agent "auto-sign" x402 micropayments. According to an analysis by Knostic Labs <a class="fn" href="#src-1">[1]</a>, instead of signing locally it puts the configured wallet private key, unchanged, into an HTTP header and sends it to its publisher's server on every recognized tool call. SignWarden did not download or run the package.</li>
+<li><code>gadgethumans-mcp</code>, an npm package, tells developers it will let their AI agent "auto-sign" x402 micropayments. According to an analysis by Knostic Labs <a class="fn" href="#src-1">[1]</a>, instead of signing locally it puts the configured wallet private key, unchanged, into an HTTP header and sends it to its publisher's server on every recognized tool call. SignWarden did not run the package. We later performed an internal static scan without executing it.</li>
 <li>It was downloaded 2,648 times between July 1 and September 28, 2026 <a class="fn" href="#src-2">[2]</a>. Downloads are not installs, and no stolen funds or victims have been identified <a class="fn" href="#src-1">[1]</a>.</li>
 <li>As of 2026-09-28, all 10 versions are still on npm and none is deprecated <a class="fn" href="#src-3">[3]</a>.</li>
 <li><strong>If you ever configured a key with this package, treat that key as compromised and move your assets to a new wallet.</strong></li>
@@ -51,7 +51,7 @@
 <table>
 <thead><tr><th>Field</th><th>Value</th></tr></thead>
 <tbody>
-<tr><td>SignWarden ID</td><td>SW-MCP-2026-000006 (1.0.3), SW-MCP-2026-000007 (1.0.9). SignWarden flags versions 1.0.3 and 1.0.9 (named in Knostic's analysis); other versions not assessed</td></tr>
+<tr><td>SignWarden ID</td><td>SW-MCP-2026-000006 (1.0.3), SW-MCP-2026-000007 (1.0.9). SignWarden flags versions 1.0.3 and 1.0.9 (named in Knostic's analysis); 1.0.8 under review; other versions not assessed</td></tr>
 <tr><td>Public analysis</td><td>2026-09-08, Knostic Labs <a class="fn" href="#src-1">[1]</a></td></tr>
 <tr><td>Ecosystem</td><td>npm / MCP server</td></tr>
 <tr><td>Protocol</td><td>x402 (machine-to-machine payments)</td></tr>
@@ -75,7 +75,7 @@
 </tbody>
 </table>
 <h2 id="how-it-works">How it works</h2>
-<p>Steps 3–4 are based on Knostic Labs' analysis <a class="fn" href="#src-1">[1]</a>; SignWarden did not download or run the package.</p>
+<p>Steps 3–4 are based on Knostic Labs' analysis <a class="fn" href="#src-1">[1]</a>; SignWarden did not run the package, and later performed an internal static scan without executing it.</p>
 <ol>
 <li><strong>The pitch.</strong> The package says that once a wallet private key is configured, the agent handles x402 payments "without any manual steps" <a class="fn" href="#src-1">[1]</a>.</li>
 <li><strong>Setup.</strong> A developer puts the key in an environment variable and connects the MCP server to their agent.</li>
@@ -104,7 +104,7 @@
 <li class="todo">Put MCP servers behind an outbound allowlist and log every outbound request.</li></ul>
 <h2 id="open-questions">Open questions</h2>
 <ul>
-<li>Whether the other eight versions on npm also send the key. SignWarden flags versions 1.0.3 (SW-MCP-2026-000006) and 1.0.9 (SW-MCP-2026-000007), named in Knostic's analysis <a class="fn" href="#src-1">[1]</a>; other versions not assessed.</li>
+<li>Whether the other versions on npm also send the key. SignWarden flags versions 1.0.3 (SW-MCP-2026-000006) and 1.0.9 (SW-MCP-2026-000007), named in Knostic's analysis <a class="fn" href="#src-1">[1]</a>. Our static scan found that the JavaScript in 1.0.8 is identical to 1.0.9; 1.0.8 is under review. The remaining seven versions have not been assessed.</li>
 <li>Whether anyone lost funds; there is no evidence so far <a class="fn" href="#src-1">[1]</a>.</li>
 <li>Whether the publisher has responded. SignWarden reported the package to npm on 2026-09-28; no reply as of publication.</li>
 </ul>
