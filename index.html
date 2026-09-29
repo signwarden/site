@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src data:; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>SignWarden: threat intelligence for AI agents and crypto wallets</title>
+  <meta name="description" content="SignWarden tracks attacks at the intersection of AI agents and crypto wallets: it collects public reports, links them to evidence and labels the techniques. Research phase.">
+  <link rel="canonical" href="https://signwarden.com/">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="wordmark" href="/">SignWarden</a>
+      <nav aria-label="Page sections">
+        <a href="#tracked">What we track</a>
+        <a href="#numbers">Numbers</a>
+        <a href="#method">Method and limits</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <div class="hero">
+      <span class="tag">Research phase</span>
+      <h1>Tracking attacks where AI agents meet crypto wallets</h1>
+      <p class="lede">AI agents now operate wallets, sign transactions and call tools and packages on people's behalf, and attacks are following them there. SignWarden collects publicly reported attacks and malicious samples, links them to evidence and labels the techniques, so that affected people and researchers have a record they can check.</p>
+    </div>
+
+    <section id="who" aria-labelledby="h-who">
+      <h2 id="h-who">What SignWarden is</h2>
+      <p>SignWarden is a threat-intelligence project focused on attacks at the intersection of AI agents and crypto wallets. It is in a <strong>research phase</strong>: we are building the data, the verification methods and the verdict process, and we do not offer a service yet.</p>
+      <div class="cols">
+        <div class="col">
+          <h3>What we do</h3>
+          <ul>
+            <li>Collect publicly reported attacks and malicious samples: packages, MCP tools, agent skills, browser and editor extensions, delegation contracts.</li>
+            <li>Link every verdict to evidence, keep what we saw at the time where we can (snapshots and hashes), and label the attack technique.</li>
+            <li>The most severe verdicts are confirmed by a human; an AI cannot decide them alone.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>What we don't do</h3>
+          <ul>
+            <li>We do not intercept, sign or monitor your transactions. We are not a wallet or a browser extension.</li>
+            <li>We do not hold private keys, seed phrases or assets, and we will <strong>never ask you for them</strong>. Anyone claiming to be SignWarden and asking for them is scamming you.</li>
+            <li>We give no investment advice. We do not interact with malicious contracts and we do not run malicious samples.</li>
+            <li>There is currently no API, no data download and no paid plan.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tracked" aria-labelledby="h-tracked">
+      <h2 id="h-tracked">What we track</h2>
+      <ul>
+        <li>Prompt injection: instructions planted in web pages, posts or documents that an agent reads.</li>
+        <li>Tool-description poisoning: instructions hidden in the description of an MCP tool.</li>
+        <li>Malicious or compromised packages, extensions and agent skills: impersonated names, or malicious versions published after an account takeover.</li>
+        <li>Exfiltration of private keys or seed phrases.</li>
+        <li>Malicious EIP-7702 delegations.</li>
+        <li>Tampering or credential theft by AI model relay (LLM API forwarding) services: <strong>under research; we do not claim to cover them and we do not claim to detect them.</strong></li>
+      </ul>
+    </section>
+
+    <section id="numbers" aria-labelledby="h-numbers">
+      <h2 id="h-numbers">Numbers so far</h2>
+      <p>Figures are listed by category, each with its source and calculation date; different kinds of things are not added into one big number. Most entries are public reports that we <strong>collected and checked</strong>, and SignWarden did not discover them itself.</p>
+      <!-- STATS:BEGIN -->
+      <p class="asof">Calculated <time datetime="2026-09-29">2026-09-29</time>. Recalculated before every public update.</p>
+      <dl class="stats">
+        <div>
+          <dt>Incidents</dt>
+          <dd><span class="num">26</span><span class="unit">incidents</span><br>
+            Real-world attacks or malicious campaigns with victims, or with malicious artifacts actually distributed, that we checked before recording them; one entry per incident. Research demonstrations, proofs of concept, disclosures, statistics and roundup reports are not counted.<br>
+            <span class="src">Sources: vendor advisories, security press, academic papers, public on-chain data. Calculated 2026-09-29.</span></dd>
+        </div>
+        <div>
+          <dt>Malicious names</dt>
+          <dd><span class="num">597</span><span class="unit">names</span><br>
+            Packages, extensions and agent skills that impersonate a legitimate name or are malicious by name. <strong>455 (76.2%) come from OSV / OpenSSF malicious-package reports</strong> (source: OSV; calculated 2026-09-29).<br>
+            <span class="src">These are public reports we collected and checked: SignWarden's contribution is curation, verification, scoping and removing false positives. We did not obtain or run the malicious code of these packages, and these entries have no independent second source.</span></dd>
+        </div>
+        <div>
+          <dt>Compromised legitimate packages</dt>
+          <dd><span class="num">1041</span><span class="unit">names</span><br>
+            The package itself is legitimate; only specific versions carry malicious code. We list only the affected versions and <strong>do not call the package itself malicious</strong>.<br>
+            <span class="src">Most of this category comes from large lists published by single external sources: 795 (76.4%) from Wiz's Shai-Hulud 2.0 affected-package list; 198 (19.0%) from Socket's Shai-Hulud report; another 7 from OSV. Calculated 2026-09-29.</span></dd>
+        </div>
+        <div>
+          <dt>Malicious delegation contracts (EIP-7702)</dt>
+          <dd><span class="num">7</span><span class="unit">addresses</span><br>
+            Listed separately; not included in the categories above.<br>
+            <span class="src">Sources: public research and public on-chain data. Calculated 2026-09-29.</span></dd>
+        </div>
+        <div>
+          <dt>AI model relay services</dt>
+          <dd><span class="num">0</span><span class="unit">matchable</span><br>
+            Under research. No relay service is currently confirmed malicious with a matchable URL or domain; we do not claim to cover or detect them.</dd>
+        </div>
+      </dl>
+      <!-- STATS:END -->
+    </section>
+
+    <section id="method" aria-labelledby="h-method">
+      <h2 id="h-method">Method and limits</h2>
+      <ul>
+        <li>We only collect public reports and research. We did not obtain or run the malicious code, and entries from third parties such as OSV have no independent second source.</li>
+        <li>Verdicts can be wrong. Anyone can appeal; when an appeal succeeds we add a correction record and keep the old one.</li>
+        <li>The data is not real-time and not guaranteed to be complete. Not being listed does not mean something is safe.</li>
+        <li>How the data will be published, and under what license, is still being planned; we will say so here once it is settled.</li>
+      </ul>
+    </section>
+
+    <section id="contact" aria-labelledby="h-contact">
+      <h2 id="h-contact">Responsible disclosure and contact</h2>
+      <p>Email: <a class="contact" href="mailto:security@signwarden.com">security@signwarden.com</a></p>
+      <p>Write to us if:</p>
+      <ul>
+        <li>you found a package, extension, agent skill or contract that you believe is malicious;</li>
+        <li>you believe a verdict is wrong and want to appeal or request a correction;</li>
+        <li>you found a security issue with this website.</li>
+      </ul>
+      <p>Please do <strong>not</strong> include private keys, seed phrases or credentials. If what you found is an active theft, please also notify the affected registry or project maintainers. We will not disclose your identity without your consent. We are a small research project and will acknowledge reports as soon as we can, but we do not commit to a fixed response time. <a href="/.well-known/security.txt">security.txt</a></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <h2 id="disclaimer">Disclaimer</h2>
+      <p>Information only. Not guaranteed to be complete, accurate or timely; it may contain errors or omissions. It is not investment, legal, security or other professional advice; please do not block, accuse or penalise anyone or any package or project based on this page alone. "Collected" means we curated and checked a public report; it does not mean SignWarden discovered, detected or independently verified the malicious behaviour, especially for entries from third-party sources such as OSV. Verdicts may be corrected or withdrawn. Names and trademarks of third parties (including OSV, OpenSSF, Wiz and Socket) belong to their owners and are cited only to identify data sources; no affiliation, partnership or endorsement is implied. To the extent permitted by law, we are not liable for any loss arising from use of, or inability to use, this information.</p>
+      <p class="product"><a href="https://doingnothingllc.com" rel="noopener noreferrer">SignWarden is a product of Doing Nothing LLC</a></p>
+      <p class="fine">Last updated: <!-- UPDATED:BEGIN -->2026-09-29<!-- UPDATED:END --> · No trackers, cookies, external fonts or scripts.</p>
+    </div>
+  </footer>
+</body>
+</html>
