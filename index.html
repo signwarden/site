@@ -8,218 +8,89 @@
   <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src data:; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>SignWarden: threat intelligence for AI agents and crypto wallets</title>
-  <meta name="description" content="AI agents now sign and send money for people, and attackers are going after them. SignWarden collects public reports, checks them and links every entry to evidence. Research phase.">
+  <title>SignWarden | Cryptographic inventories for digital assets</title>
+  <meta name="description" content="SignWarden is researching source-linked cryptographic inventories and on-chain exposure records for digital-asset due diligence. No inventory service is available yet.">
   <link rel="canonical" href="https://signwarden.com/">
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
-
   <header class="top">
     <div class="wrap">
       <a class="wordmark" href="/">SignWarden</a>
       <nav aria-label="Page sections">
-        <a href="#happened">What happened</a>
-        <a href="#method">How we check</a>
-        <a href="#numbers">Numbers</a>
-        <a href="#limits">Limits</a>
+        <a href="#inventory">Inventory</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#scope">Scope</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
-
   <main id="main">
     <div class="band">
       <div class="wrap hero">
-        <h1>AI agents now sign and send money for people. <em class="hl">Attackers</em> are going after them.</h1>
-        <p class="lede">SignWarden tracks these attacks. We collect public reports, check them, and link every entry to evidence you can inspect.</p>
+        <p class="asof">Digital assets / Post-quantum readiness</p>
+        <h1>Know which <em class="hl">cryptography</em> your digital assets rely on.</h1>
+        <p class="lede">SignWarden is researching cryptographic inventories for digital assets: a traceable record of algorithms, signature dependencies and observable on-chain exposure, with the sources and gaps clearly identified.</p>
         <p class="cta">
-          <a class="btn primary" href="#method">How we check</a>
-          <a class="btn" href="#numbers">See the numbers</a>
+          <a class="btn primary" href="#inventory">Explore the proposed inventory</a>
+          <a class="btn" href="#contact">Contact the team</a>
         </p>
-        <p class="status">Status: research phase. No API, no data download and no paid plan yet.</p>
-        <figure class="chain" aria-labelledby="chain-cap">
+        <p class="status">Status: in research. We are evaluating feasibility and scope. No inventory service or paid plan is available yet.</p>
+        <figure class="chain" aria-labelledby="inventory-cap">
           <ol class="blocks">
-            <li class="block">
-              <span class="k">Source captured</span>
-              <span class="h">a99d9810…9c3f97</span>
-              <span class="d">SHA-256 of our saved copy of a public transaction page</span>
-            </li>
-            <li class="block">
-              <span class="k">Incident recorded <b>#0007</b></span>
-              <span class="h">0x6fc7eb7d…25739a</span>
-              <span class="d">On-chain transaction on Base, linked to our record of this incident</span>
-            </li>
-            <li class="block">
-              <span class="k">Verdict added</span>
-              <span class="h">append-only</span>
-              <span class="d">A correction adds a new record. Nothing is edited or deleted.</span>
-            </li>
+            <li class="block"><span class="k">Cryptographic assets</span><span class="h">Algorithms &amp; signatures</span><span class="d">Identify what is used within a defined scope.</span></li>
+            <li class="block"><span class="k">On-chain exposure</span><span class="h">Addresses &amp; control paths</span><span class="d">Separate public observations from unverified assumptions.</span></li>
+            <li class="block"><span class="k">Source evidence</span><span class="h">Locations &amp; limitations</span><span class="d">Make each supported finding traceable to its source.</span></li>
           </ol>
-          <figcaption id="chain-cap">How one record is built, drawn schematically. The two hashes are real: the transaction hash is public on-chain data, and the first is the SHA-256 of the page copy we saved for the same incident.</figcaption>
-        </figure>
-        <figure class="chain timeline-fig" aria-labelledby="tl-cap">
-          <ol class="timeline">
-            <li><time datetime="2025-08-26">2025-08-26</time><b class="n">#0030</b><span>Nx packages turn local AI CLIs against developers</span></li>
-            <li><time datetime="2025-09-08">2025-09-08</time><b class="n">#0031</b><span>18 npm packages incl. chalk and debug hijacked via phishing</span></li>
-            <li><time datetime="2025-09">2025-09</time><b class="n">#0020</b><span>Shai-Hulud worm: three waves, 700+ npm packages</span></li>
-            <li><time datetime="2025-10-17">2025-10-17</time><b class="n">#0021</b><span>GlassWorm: self-spreading worm in VS Code and Open VSX extensions</span></li>
-            <li><time datetime="2026-02-05">2026-02-05</time><b class="n">#0034</b><span>SmartLoader: fake Oura MCP server delivers StealC</span></li>
-            <li><time datetime="2026-02-22">2026-02-22</time><b class="n">#0008</b><span>Autonomous agent sends 5% of a token's supply to a stranger</span></li>
-            <li><time datetime="2026-04-21">2026-04-21</time><b class="n">#0036</b><span>CanisterSprawl: self-spreading worm in compromised npm packages</span></li>
-            <li><time datetime="2026-05-04">2026-05-04</time><b class="n">#0007</b><span>Grok and Bankrbot: Morse-code prompt injection drains ~3B DRB</span></li>
-          </ol>
-          <figcaption id="tl-cap">Eight of the incidents we collected and checked, oldest first. The # number is our record number for the incident; dates are as recorded.</figcaption>
+          <figcaption id="inventory-cap">The proposed scope of an inventory. This diagram is a research outline, not a completed assessment.</figcaption>
         </figure>
       </div>
     </div>
-
     <div class="wrap">
-      <section id="happened" aria-labelledby="h-happened">
-        <h2 id="h-happened">What happened</h2>
-        <p class="lead">Three incidents we collected and checked from public reports. Each shows the hash of the page copy we saved and a link to the public source.</p>
-        <ol class="cards">
-          <li class="card">
-            <time datetime="2026-05-04">2026-05-04</time>
-            <h3>A Morse-code post made an AI agent move about 3 billion tokens</h3>
-            <p>An attacker posted a Morse-code message on X. The AI model Grok decoded it and passed it on as a trusted instruction, and the Bankrbot agent then moved about 3 billion DRB tokens to the attacker on Base. Reported losses range from $150K to $202K depending on the source. About 80% was later recovered.</p>
-            <div class="ev"><b>SHA-256 of our saved copy</b>a99d98100af4ec32a46543915c410f62dc4c7ed0ba439bc6d1c58dcacc9c3f97<br><a href="https://basescan.org/tx/0x6fc7eb7da9379383efda4253e4f599bbc3a99afed0468eabfe18484ec525739a" rel="noopener noreferrer">View the on-chain transaction</a></div>
-          </li>
-          <li class="card">
-            <time datetime="2025-09">2025-09 to 2025-12</time>
-            <h3>A self-spreading npm worm hit more than 700 packages in three waves</h3>
-            <p>The Shai-Hulud worm stole npm tokens, GitHub tokens and cloud credentials from developers and published them in public repositories. Credentials leaked in the second wave were later used in the Trust Wallet browser-extension incident, reported at $7M to $8.5M depending on the source.</p>
-            <div class="ev"><b>SHA-256 of our saved copy</b>2509fe2e53fd85a4682332b4e78a715da1891a01b1e005a34e51876bd36f9e7c<br><a href="https://www.cisa.gov/news-events/alerts/2025/09/23/widespread-supply-chain-compromise-impacting-npm-ecosystem" rel="noopener noreferrer">Read the CISA alert</a></div>
-          </li>
-          <li class="card">
-            <time datetime="2025-08-26">2025-08-26</time>
-            <h3>Poisoned Nx packages turned developers' own AI tools against them</h3>
-            <p>Malicious Nx versions on npm ran a postinstall script that invoked locally installed AI command-line tools (Claude, Gemini, Q) with permissive flags to search the machine for secrets and crypto-wallet data. 2,349 secrets were leaked to public GitHub repositories. No quantified loss or attacker wallet has been published.</p>
-            <div class="ev"><b>SHA-256 of our saved copy</b>61e9321b89fc50e88e168656af2858937b5a005da6802b2c011abfb14c15dc71<br><a href="https://thehackernews.com/2025/08/malicious-nx-packages-in-s1ngularity.html" rel="noopener noreferrer">Read the report</a></div>
-          </li>
-        </ol>
-        <p class="latest"><b>Latest write-up</b><a href="/reports/mcp-auto-signing-key-exfiltration/">An "auto-signing" MCP server sends your raw wallet private key to a remote server</a></p>
-        <h3 class="gap">Attack types we track</h3>
-        <ul class="tracked">
-          <li>Prompt injection: instructions planted in web pages, posts or documents that an agent reads.</li>
-          <li>Tool-description poisoning: instructions hidden in the description of an MCP tool.</li>
-          <li>Malicious or compromised packages, extensions and agent skills: impersonated names, or malicious versions published after an account takeover.</li>
-          <li>Exfiltration of private keys or seed phrases.</li>
-          <li>Malicious EIP-7702 delegations.</li>
-          <li>Tampering or credential theft by AI model relay (LLM API forwarding) services: <strong>under research. We collect a small set of indicator domains from one vendor threat report; we do not claim to detect malicious relay services.</strong></li>
-        </ul>
-      </section>
-
-      <section id="method" aria-labelledby="h-method">
-        <h2 id="h-method">How we check</h2>
-        <p class="lead">SignWarden is a threat-intelligence project focused on attacks at the intersection of AI agents and crypto wallets. It is in a <strong>research phase</strong>: we are building the data, the verification methods and the verdict process.</p>
+      <section id="inventory" aria-labelledby="h-inventory">
+        <h2 id="h-inventory">A record you can inspect</h2>
+        <p class="lead">We are evaluating a scoped evidence package for protocol teams, token issuers and smaller custodians responding to concrete institutional due-diligence or applicable supervisory questions.</p>
         <ol class="steps">
-          <li>
-            <h3>Evidence for every entry</h3>
-            <p>Every entry links to evidence. Where we can, we save what we saw at the time as a snapshot and record its SHA-256, so a report that is later edited or removed can still be checked.</p>
-          </li>
-          <li>
-            <h3>Verdicts are added, never edited</h3>
-            <p>A correction adds a new record and the old one stays. The most severe verdicts are confirmed by a human; an AI cannot decide them alone. Anyone can appeal.</p>
-          </li>
-          <li>
-            <h3>Sources are counted separately</h3>
-            <p>"Collected and checked" means we reviewed a public report. It does not mean SignWarden found the attack itself. Each category below shows where its entries come from, including how much comes from a single outside source such as OSV, Wiz or Socket.</p>
-          </li>
+          <li><h3>Cryptographic bill of materials</h3><p>A proposed CycloneDX inventory of identified cryptographic assets and dependencies. A standard format makes a record easier to exchange; it does not establish that the inventory is complete.</p></li>
+          <li><h3>On-chain exposure records</h3><p>Observations about public-key exposure, signature-dependent contracts and administrative control paths, limited to the networks, source versions and blocks actually examined.</p></li>
+          <li><h3>Requirements and source mapping</h3><p>A record of the applicable question, the evidence that supports an answer and the parts that remain unverified or outside the assessment.</p></li>
         </ol>
       </section>
-
-      <section id="numbers" aria-labelledby="h-numbers">
-        <h2 id="h-numbers">Numbers so far</h2>
-        <p class="lead">Figures are listed by category, each with its source and calculation date; different kinds of things are not added into one big number. Most entries are public reports that we <strong>collected and checked</strong>, and SignWarden did not discover them itself.</p>
-        <!-- STATS:BEGIN -->
-      <p class="asof">Calculated <time datetime="2026-09-29">2026-09-29</time>. Recalculated before every public update.</p>
-      <dl class="stats">
-        <div>
-          <dt>Incidents</dt>
-          <dd><span class="num">35</span><span class="unit">incidents</span><br>
-            Real-world attacks or malicious campaigns with victims, or with malicious artifacts actually distributed, that we checked before recording them; one entry per incident. Research demonstrations, proofs of concept, disclosures, statistics and roundup reports are not counted.<br>
-            <span class="src">Sources: vendor advisories, security press, academic papers, public on-chain data. Calculated 2026-09-29.</span></dd>
-        </div>
-        <div>
-          <dt>Malicious names</dt>
-          <dd><span class="num">664</span><span class="unit">names</span><br>
-            Packages, extensions and agent skills that impersonate a legitimate name or are malicious by name. <strong>515 (77.6%) come from OSV / OpenSSF malicious-package reports</strong> (source: OSV; calculated 2026-09-29).<br>
-            <span class="src">These are public reports we collected and checked: SignWarden's contribution is curation, verification, scoping and removing false positives. We did not obtain or run the malicious code of these packages, and these entries have no independent second source.</span></dd>
-        </div>
-        <div>
-          <dt>Compromised legitimate packages</dt>
-          <dd><span class="num">1085</span><span class="unit">names</span><br>
-            The package itself is legitimate; only specific versions carry malicious code. We list only the affected versions and <strong>do not call the package itself malicious</strong>.<br>
-            <span class="src">Most of this category comes from large lists published by single external sources: 795 (73.3%) from Wiz's Shai-Hulud 2.0 affected-package list; 197 (18.2%) from Socket's Shai-Hulud report; another 45 from OSV. Calculated 2026-09-29.</span></dd>
-        </div>
-        <div>
-          <dt>Malicious delegation contracts (EIP-7702)</dt>
-          <dd><span class="num">7</span><span class="unit">addresses</span><br>
-            Listed separately; not included in the categories above.<br>
-            <span class="src">Sources: public research and public on-chain data. Calculated 2026-09-29.</span></dd>
-        </div>
-        <div>
-          <dt>AI model relay services</dt>
-          <dd><span class="num">6</span><span class="unit">indicator domains</span><br>
-            Collects 6 indicator domains from Anthropic's September 2026 threat report, tied to a fake AI-reselling operation. We do not claim to detect malicious relay services and did not discover these.<br>
-            <span class="src">Source: <a href="https://www.anthropic.com/threat-intelligence-report-september-2026" rel="noopener noreferrer">Anthropic's September 2026 threat report</a>. Calculated 2026-09-29.</span></dd>
-        </div>
-      </dl>
-      <!-- STATS:END -->
-      </section>
-
-      <section id="limits" aria-labelledby="h-limits">
-        <h2 id="h-limits">Limits, and what we don't do</h2>
-        <ul>
-          <li>We only collect public reports and research. We did not obtain or run the malicious code, and entries from third parties such as OSV have no independent second source.</li>
-          <li>Verdicts can be wrong. Anyone can appeal; when an appeal succeeds we add a correction record and keep the old one.</li>
-          <li>The data is not real-time and not guaranteed to be complete. Not being listed does not mean something is safe.</li>
-          <li>How the data will be published, and under what license, is still being planned; we will say so here once it is settled.</li>
-        </ul>
+      <section id="evidence" aria-labelledby="h-evidence">
+        <h2 id="h-evidence">Every finding needs a source</h2>
+        <p class="lead">The research focuses on reproducible evidence: a source location, a version or block reference, and the time of observation. Unknown values stay unknown.</p>
         <div class="cols">
-          <div class="col">
-            <h3>We do not</h3>
-            <ul>
-              <li>Intercept, sign or monitor your transactions. We are not a wallet or a browser extension.</li>
-              <li>Hold private keys, seed phrases or assets. We will <strong>never ask you for them</strong>; anyone claiming to be SignWarden and asking for them is scamming you.</li>
-              <li>Give investment advice, interact with malicious contracts or run malicious samples.</li>
-            </ul>
-          </div>
-          <div class="col">
-            <h3>Not available yet</h3>
-            <ul>
-              <li>No API.</li>
-              <li>No data download.</li>
-              <li>No paid plan.</li>
-            </ul>
-          </div>
+          <div class="col"><h3>Traceable observations</h3><p>Source-code locations, contract addresses and transaction references can explain where a finding came from. Content hashes can help detect changes to a saved record.</p></div>
+          <div class="col"><h3>Clear coverage gaps</h3><p>Public repositories and blockchain data cannot by themselves establish an entire custody system's cryptography, private-key lifecycle or off-chain dependencies. A hash does not establish that a claim is true.</p></div>
         </div>
       </section>
-
-      <section id="contact" aria-labelledby="h-contact">
-        <h2 id="h-contact">Responsible disclosure and contact</h2>
-        <p>Email: <a class="contact" href="mailto:security@signwarden.com">security@signwarden.com</a></p>
-        <p>Write to us if:</p>
+      <section id="scope" aria-labelledby="h-scope">
+        <h2 id="h-scope">Defined scope. Clear limits.</h2>
+        <p class="lead">Our current work evaluates whether this evidence package can answer a concrete due-diligence question. It does not certify quantum safety or regulatory compliance.</p>
         <ul>
-          <li>you found a package, extension, agent skill or contract that you believe is malicious;</li>
-          <li>you believe a verdict is wrong and want to appeal or request a correction;</li>
-          <li>you found a security issue with this website.</li>
+          <li>An exposed public key, a signature call and an exploitable asset-control path are different findings.</li>
+          <li>Supervisory requirements depend on the institution, its activities and the jurisdiction. A general inventory is not a legal assessment.</li>
+          <li>We are not offering migration consulting, a post-quantum wallet or a proprietary risk score.</li>
+          <li>We do not hold assets or request private keys, seed phrases or credentials.</li>
         </ul>
-        <p>Please do <strong>not</strong> include private keys, seed phrases or credentials. If what you found is an active theft, please also notify the affected registry or project maintainers. We will not disclose your identity without your consent. We are a small research project and will acknowledge reports as soon as we can, but we do not commit to a fixed response time.</p>
-        <p class="tap"><a href="/.well-known/security.txt">security.txt</a></p>
+      </section>
+      <section id="contact" aria-labelledby="h-contact">
+        <h2 id="h-contact">Discuss a specific inventory question</h2>
+        <p>If an institutional customer or supervisor has asked you to identify your cryptographic dependencies, tell us what evidence they need and the scope of the request.</p>
+        <p>Email: <a class="contact" href="mailto:security@signwarden.com">security@signwarden.com</a></p>
+        <p>Please do not send private keys, seed phrases, credentials or confidential customer files. This research contact is not an offer of a completed assessment or a commitment to a delivery date.</p>
+        <p class="tap"><a href="/.well-known/security.txt">Website security contact</a></p>
       </section>
     </div>
   </main>
-
   <footer>
     <div class="wrap">
-      <h2 id="disclaimer">Disclaimer</h2>
-      <p>Information only. Not guaranteed to be complete, accurate or timely; it may contain errors or omissions. It is not investment, legal, security or other professional advice; please do not block, accuse or penalise anyone or any package or project based on this page alone. "Collected" means we curated and checked a public report; it does not mean SignWarden discovered, detected or independently verified the malicious behaviour, especially for entries from third-party sources such as OSV. Verdicts may be corrected or withdrawn. Names and trademarks of third parties (including OSV, OpenSSF, Wiz and Socket) belong to their owners and are cited only to identify data sources; no affiliation, partnership or endorsement is implied. To the extent permitted by law, we are not liable for any loss arising from use of, or inability to use, this information.</p>
+      <h2>Research notice</h2>
+      <p>This page describes research in progress. It is not investment, legal or security advice, a compliance certification or a guarantee of protection against quantum attacks. Any future assessment would need an agreed scope, sufficient evidence and explicit limitations.</p>
       <p class="product"><a href="https://doingnothingllc.com" rel="noopener noreferrer">SignWarden is a product of Doing Nothing LLC</a></p>
-      <p class="fine">Last updated: <!-- UPDATED:BEGIN -->2026-09-29<!-- UPDATED:END --> · No trackers, cookies, external fonts or scripts.</p>
+      <p class="fine">Last updated: <time datetime="2026-10-01">2026-10-01</time>.</p>
     </div>
   </footer>
 </body>
