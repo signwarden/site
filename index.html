@@ -7,116 +7,89 @@
   <meta name="theme-color" content="#081521">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Cryptographic Inventories for Digital Asset Custody | SignWarden</title>
-  <meta name="description" content="SignWarden is developing source-linked cryptographic inventories for digital asset custody reviews. Discuss your evidence needs and proposed scope.">
-  <link rel="canonical" href="https://signwarden.com/">
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
   <link rel="stylesheet" href="/style.css">
+  <title>Stablecoin Payment Reconciliation | SignWarden</title>
+  <meta name="description" content="SignWarden is researching reconciliation of stablecoin payment exports: unmatched records, duplicates, partial payments, refunds and settlement differences. Discuss your workflow.">
+  <link rel="canonical" href="https://signwarden.com/">
 </head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
-  <header class="top">
+  <header class="top"><div class="wrap header-row">
+    <a class="wordmark" href="/"><img class="brand-icon" src="/favicon.svg" width="32" height="32" alt="" aria-hidden="true">SignWarden</a>
+    <nav aria-label="Page sections">
+      <a href="#workflow">Workflow</a><a href="#records">Records</a><a href="#scope">Scope</a><a href="#contact">Contact</a>
+    </nav>
+  </div></header>
+  <main id="main" tabindex="-1">
+    <div class="hero-band"><div class="wrap hero">
+      <p class="eyebrow">Stablecoin payment reconciliation</p>
+      <h1>See which payment records still need <em>reconciliation.</em></h1>
+      <p class="lede">Payment exports can leave questions about what matches, what repeats and what has settled. SignWarden is researching a focused way to review stablecoin payment records and show the evidence behind each difference.</p>
+      <div class="cta"><a class="button primary" href="#contact">Discuss your reconciliation workflow</a><a class="button" href="#records">See the proposed record structure</a></div>
+      <p class="status"><a href="#scope">In development →</a></p>
+      <p class="stage">Current focus: a single payment-export workflow.</p>
+    </div></div>
     <div class="wrap">
-      <a class="wordmark" href="/"><img class="brand-icon" src="/favicon.svg" width="32" height="32" alt="" aria-hidden="true">SignWarden</a>
-      <nav aria-label="Page sections">
-        <a href="#inventory">Inventory</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#questions">Questions</a>
-        <a href="#scope">Scope</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-  <main id="main">
-    <div class="band">
-      <div class="wrap hero">
-        <p class="asof"><span class="signal" aria-hidden="true"></span> For digital asset custody and security teams</p>
-        <p class="eyebrow">Evidence before certainty.</p>
-        <h1>Cryptographic evidence for digital asset <em class="hl">due diligence.</em></h1>
-        <p class="hero-subtitle">Cryptographic inventories for digital assets.</p>
-        <p class="lede">When a customer or reviewer asks how your digital assets depend on cryptography, the answer may span code, contracts and custody systems. SignWarden is developing a source-linked inventory approach to help teams examine those dependencies and the evidence behind them.</p>
-        <p class="cta">
-          <a class="btn primary" href="#contact">Discuss your evidence needs</a>
-          <a class="btn" href="#inventory">See the proposed scope</a>
-        </p>
-        <p class="status"><a href="#inventory">In development →</a></p>
-        <figure class="chain" aria-labelledby="inventory-cap">
-          <ol class="blocks">
-            <li class="block"><span class="k">01 / Cryptographic assets</span><span class="h">Algorithms &amp; signatures</span><span class="d">Identify what is used within a defined scope.</span></li>
-            <li class="block"><span class="k">02 / On-chain exposure</span><span class="h">Addresses &amp; control paths</span><span class="d">Separate public observations from unverified assumptions.</span></li>
-            <li class="block"><span class="k">03 / Source evidence</span><span class="h">Locations &amp; limitations</span><span class="d">Make each supported finding traceable to its source.</span></li>
-          </ol>
-          <figcaption id="inventory-cap">The proposed scope of an inventory. This diagram is a research outline, not a completed assessment.</figcaption>
+      <section id="workflow" aria-labelledby="h-workflow">
+        <p class="eyebrow">The question we are exploring</p>
+        <h2 id="h-workflow">What still needs a human review?</h2>
+        <p class="intro">We are exploring how a payment team could review a defined set of exports, identify unresolved relationships and explain settlement differences. These are proposed review categories, not results from a working service.</p>
+        <ul class="review-grid">
+          <li><span class="number">01</span><h3>Unmatched records</h3><p>Which payment, refund or settlement record has no supported link to the expected record?</p></li>
+          <li><span class="number">02</span><h3>Repeated records</h3><p>Is an entry repeated in an export, or is there evidence of a separate payment? Those are different questions.</p></li>
+          <li><span class="number">03</span><h3>Partial payments</h3><p>Which linked records account for only part of the expected amount, and what remains unresolved?</p></li>
+          <li><span class="number">04</span><h3>Refunds</h3><p>Can a refund be linked to its original payment without treating it as a new receipt?</p></li>
+          <li><span class="number">05</span><h3>Settlement differences</h3><p>Do fees, timing or missing records explain a difference between payment and settlement records?</p></li>
+        </ul>
+      </section>
+      <section id="records" aria-labelledby="h-records">
+        <p class="eyebrow">Evidence with each review</p>
+        <h2 id="h-records">Keep the record behind the difference.</h2>
+        <p class="intro">The proposed approach keeps original identifiers, status, direction and source references visible. A possible match needs evidence; an amount or date that looks similar is not enough.</p>
+        <figure class="record" aria-labelledby="record-caption">
+          <div class="record-header"><span class="record-label">Synthetic canonical field structure</span><span class="record-note">Illustration only</span></div>
+          <dl class="field-grid">
+            <div><dt>Source</dt><dd>source_file · source_row · export_version</dd></div>
+            <div><dt>Identity &amp; links</dt><dd>record_id · related_record_id · settlement_id</dd></div>
+            <div><dt>Event</dt><dd>event_type · direction · status · observed_at · timezone</dd></div>
+            <div><dt>Asset &amp; amount</dt><dd>chain_id · asset_id · amount_atomic · precision</dd></div>
+            <div><dt>Refunds &amp; fees</dt><dd>refund_reference · fee_amount_atomic · fee_asset_id</dd></div>
+            <div><dt>Review evidence</dt><dd>review_reason · supporting_reference · unresolved_fields</dd></div>
+          </dl>
+          <figcaption id="record-caption">A synthetic, canonical field illustration—not a provider’s native export, a completed data contract or a generated reconciliation result. Field availability and mappings remain to be verified.</figcaption>
         </figure>
-      </div>
-    </div>
-    <div class="wrap">
-      <section id="inventory" aria-labelledby="h-inventory">
-        <h2 id="h-inventory">Start with the question you need to answer</h2>
-        <p class="lead">What needs to be documented, who will review it, and which systems are in scope? These questions shape the proposed inventory and the evidence it would need.</p>
-        <ol class="steps">
-          <li><h3>Cryptographic bill of materials</h3><p>A proposed CycloneDX inventory of identified cryptographic assets and dependencies. A standard format makes a record easier to exchange; it does not establish that the inventory is complete.</p></li>
-          <li><h3>On-chain exposure records</h3><p>Observations about public-key exposure, signature-dependent contracts and administrative control paths, limited to the networks, source versions and blocks actually examined.</p></li>
-          <li><h3>Requirements and source mapping</h3><p>A record of the applicable question, the evidence that supports an answer and the parts that remain unverified or outside the assessment.</p></li>
-        </ol>
-      </section>
-      <section id="evidence" aria-labelledby="h-evidence">
-        <h2 id="h-evidence">Every finding needs a source</h2>
-        <p class="lead">The research focuses on reproducible evidence: a source location, a version or block reference, and the time of observation. Unknown values stay unknown.</p>
-        <div class="cols">
-          <div class="col"><h3>Traceable observations</h3><p>Source-code locations, contract addresses and transaction references can explain where a finding came from. Content hashes can help detect changes to a saved record.</p></div>
-          <div class="col"><h3>Clear coverage gaps</h3><p>Public repositories and blockchain data cannot by themselves establish an entire custody system's cryptography, private-key lifecycle or off-chain dependencies. A hash does not establish that a claim is true.</p></div>
-        </div>
-      </section>
-      <section id="why" class="story" aria-labelledby="h-why">
-        <p class="eyebrow">Why SignWarden</p>
-        <h2 id="h-why">Evidence before certainty.</h2>
-        <div class="cols">
-          <p class="story-lead">A decision about change starts with understanding what is already there.</p>
-          <div><p>Digital assets depend on cryptography across signatures, contracts and the systems around them. Before considering a post-quantum transition, teams need a clear view of those dependencies—and of the evidence they can actually inspect.</p><p>That is the question behind SignWarden: can a scoped, source-linked inventory make those dependencies and gaps easier to discuss? We are researching that question, with unknowns visible and claims limited to their evidence.</p></div>
+        <div class="principles">
+          <div><h3>Relationships before guesses</h3><p>The proposed rules use fixed identifiers and explicit links. They would not guess a match from approximate amounts or dates.</p></div>
+          <div><h3>Unknown stays unresolved</h3><p>Missing evidence would stay visible for review. A pending or failed payment would not be labelled settled, and a missing amount would not become zero.</p></div>
         </div>
       </section>
       <section id="scope" aria-labelledby="h-scope">
-        <h2 id="h-scope">Defined scope. Clear limits.</h2>
-        <p class="lead">Our current work evaluates whether this evidence package can answer a concrete due-diligence question. It does not certify quantum safety or regulatory compliance.</p>
-        <ul>
-          <li>An exposed public key, a signature call and an exploitable asset-control path are different findings.</li>
-          <li>Supervisory requirements depend on the institution, its activities and the jurisdiction. A general inventory is not a legal assessment.</li>
-          <li>We are not offering migration consulting, a post-quantum wallet or a proprietary risk score.</li>
-          <li>We do not hold assets or request private keys, seed phrases or credentials.</li>
+        <p class="eyebrow">A focused starting point</p>
+        <h2 id="h-scope">One workflow before broader coverage.</h2>
+        <p class="intro">The intended first scope is one provider, one chain, one stablecoin and one fixed export format for a single buyer workflow. Those choices are not yet locked, and no provider compatibility is claimed.</p>
+        <ul class="scope-list">
+          <li>Current work is research, data-contract definition and preparation for offline synthetic validation.</li>
+          <li>The proposed tool would review records. It would not move funds, sign transactions, issue refunds or automatically adjust your accounts.</li>
+          <li>This work does not establish accounting certification, regulatory compliance or any exemption from licensing requirements.</li>
         </ul>
       </section>
-      <section id="questions" aria-labelledby="h-questions">
-        <h2 id="h-questions">Questions</h2>
-        <h3>Who is this work for?</h3>
-        <p>We are exploring the needs of digital asset custody and security teams responding to a specific institutional review or supervisory question. The scope depends on the organisation and the question it needs to answer.</p>
-        <h3>Can public blockchain data provide a complete inventory?</h3>
-        <p>Public data can support some observations. It cannot by itself establish an entire custody system’s cryptography, internal controls or private-key lifecycle.</p>
-        <h3>Does an inventory prove quantum safety or compliance?</h3>
-        <p>No. An inventory records what is supported by the available evidence. It does not certify quantum safety, regulatory compliance or protection from an attack.</p>
-        <h3>How does this relate to existing tools?</h3>
-        <p>Existing scanners, blockchain interfaces and supplier records can provide useful inputs. Our current work evaluates the scope and evidence needed to connect those inputs to a specific review question.</p>
-        <h3>What can I discuss with SignWarden today?</h3>
-        <p>You can share a non-confidential description of the question you need to answer, the intended reviewer and any relevant timing. We are gathering requirements while the approach is in development.</p>
-      </section>
-      <section id="contact" aria-labelledby="h-contact">
-        <h2 id="h-contact">Tell us what your reviewer needs</h2>
-        <p>What question have you been asked, which systems does it concern, and what do your existing tools or suppliers already provide? A short, non-confidential summary is enough to start the conversation.</p>
-        <p>Email: <a class="contact" href="mailto:security@signwarden.com">security@signwarden.com</a></p>
-        <p>Please do not send private keys, seed phrases, credentials or confidential customer files. This research contact is not an offer of a completed assessment or a commitment to a delivery date.</p>
-        <p class="tap"><a href="/.well-known/security.txt">Website security contact</a></p>
+      <section id="contact" class="contact-section" aria-labelledby="h-contact">
+        <p class="eyebrow">Start with your workflow</p>
+        <h2 id="h-contact">What do your exports leave unresolved?</h2>
+        <p class="intro">Tell us, in a non-confidential summary, what records you work with, what your current process already resolves and which questions remain. We are gathering requirements while this approach is in development.</p>
+        <p><a class="email" href="mailto:security@signwarden.com">security@signwarden.com</a></p>
+        <p class="contact-note">Please do not send customer files, account credentials, private keys or seed phrases.</p>
+        <p><a class="security-link" href="/.well-known/security.txt">Website security contact</a></p>
       </section>
     </div>
   </main>
-  <footer>
-    <div class="wrap">
-      <h2>Research notice</h2>
-      <p>This page describes research in progress. It is not investment, legal or security advice, a compliance certification or a guarantee of protection against quantum attacks. Any future assessment would need an agreed scope, sufficient evidence and explicit limitations.</p>
-      <p class="product"><a href="https://doingnothingllc.com" rel="noopener noreferrer">SignWarden is a product of Doing Nothing LLC</a></p>
-      <p class="fine">Last updated: <time datetime="2026-10-01">2026-10-01</time>.</p>
-    </div>
-  </footer>
+  <footer><div class="wrap">
+    <p>This page describes research in progress. It is not accounting, legal or investment advice. Any future review would need an agreed scope, an authorised data format and explicit limitations.</p>
+    <p class="product"><a href="https://doingnothingllc.com" rel="noopener noreferrer">SignWarden is a product of Doing Nothing LLC</a></p>
+    <p class="updated">Last updated: <time datetime="2026-10-01">2026-10-01</time>.</p>
+  </div></footer>
 </body>
 </html>
