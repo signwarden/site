@@ -14,9 +14,10 @@ a:focus-visible{outline:3px solid var(--amber);outline-offset:5px;border-radius:
 .top{border-bottom:1px solid var(--line);background:var(--bg)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem 2rem;padding-top:.75rem;padding-bottom:.75rem}
 .wordmark,.wordmark:visited{color:var(--text);font-size:1.3rem;font-weight:750;letter-spacing:-.04em;text-decoration:none;padding:.55rem 0}
-.wordmark::before{content:"";display:inline-block;width:.75rem;height:.75rem;margin-right:.65rem;border:2px solid var(--teal);box-shadow:4px -4px 0 -1px var(--bg),4px -4px 0 1px var(--teal)}
+.wordmark{display:inline-flex;align-items:center;gap:.6rem}
+.brand-icon{display:block;width:32px;height:32px;flex-shrink:0}
 nav{display:flex;flex-wrap:wrap;gap:0 1.2rem;font-size:.875rem}
-nav a,nav a:visited{display:inline-block;color:var(--muted);padding:.6rem 0;text-decoration:none}
+nav a,nav a:visited{display:inline-flex;align-items:center;min-height:44px;color:var(--muted);padding:.6rem 0;text-decoration:none}
 nav a:hover{color:var(--teal)}
 .band{border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 88% 15%,#143c43 0,transparent 55%),linear-gradient(90deg,#71e0ce08 1px,transparent 1px),linear-gradient(#71e0ce08 1px,transparent 1px);background-size:auto,40px 40px,40px 40px}
 .hero{padding-top:4.5rem;padding-bottom:3.5rem}
@@ -68,3 +69,5 @@ footer p{max-width:63rem}
 @media(max-width:30rem){body{font-size:1rem}.wrap{padding-left:1rem;padding-right:1rem}.top .wrap{gap:.2rem}nav{gap:0 1rem;font-size:.8rem}.hero{padding-top:2rem;padding-bottom:2rem}.asof{font-size:.68rem;margin-bottom:1.8rem}h1{font-size:2.35rem}.btn{width:100%}.block,.steps li{padding:1.2rem}section{padding:2.5rem 0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 @media print{body{background:#fff;color:#000}.top, .cta,.skip{display:none}.band,footer,.block,.steps li{background:none}p,.lede,.lead,.status,.hl,a,.col p,.story .cols p,figcaption{color:#000}section{break-inside:avoid}}
+
+h1,h3{overflow-wrap:anywhere}
