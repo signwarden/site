@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
   <link rel="stylesheet" href="/style.css">
   <title>Stablecoin Payment Reconciliation | SignWarden</title>
-  <meta name="description" content="SignWarden is researching reconciliation of stablecoin payment exports: unmatched records, duplicates, partial payments, refunds and settlement differences. Discuss your workflow.">
+  <meta name="description" content="SignWarden is developing a tool to review unmatched stablecoin payment records and settlement differences. Tell us what your exports leave unresolved.">
   <link rel="canonical" href="https://signwarden.com/">
 </head>
 <body>
@@ -27,7 +27,7 @@
     <div class="hero-band"><div class="wrap hero">
       <p class="eyebrow">Stablecoin payment reconciliation</p>
       <h1>See which payment records still need <em>reconciliation.</em></h1>
-      <p class="lede">Payment exports can leave questions about what matches, what repeats and what has settled. SignWarden is researching a focused way to review stablecoin payment records and show the evidence behind each difference.</p>
+      <p class="lede">When a payment export does not explain a settlement, someone has to check the records. We are developing a way to review the difference and trace it to the source.</p>
       <div class="cta"><a class="button primary" href="#contact">Discuss your reconciliation workflow</a><a class="button" href="#records">See the proposed record structure</a></div>
       <p class="status"><a href="#scope">In development →</a></p>
       <p class="stage">Current focus: a single payment-export workflow.</p>
@@ -36,7 +36,7 @@
       <section id="workflow" aria-labelledby="h-workflow">
         <p class="eyebrow">The question we are exploring</p>
         <h2 id="h-workflow">What still needs a human review?</h2>
-        <p class="intro">We are exploring how a payment team could review a defined set of exports, identify unresolved relationships and explain settlement differences. These are proposed review categories, not results from a working service.</p>
+        <p class="intro">A payment team needs to see which records belong together and which differences need follow-up. These are the questions guiding development.</p>
         <ul class="review-grid">
           <li><span class="number">01</span><h3>Unmatched records</h3><p>Which payment, refund or settlement record has no supported link to the expected record?</p></li>
           <li><span class="number">02</span><h3>Repeated records</h3><p>Is an entry repeated in an export, or is there evidence of a separate payment? Those are different questions.</p></li>
@@ -48,7 +48,7 @@
       <section id="records" aria-labelledby="h-records">
         <p class="eyebrow">Evidence with each review</p>
         <h2 id="h-records">Keep the record behind the difference.</h2>
-        <p class="intro">The proposed approach keeps original identifiers, status, direction and source references visible. A possible match needs evidence; an amount or date that looks similar is not enough.</p>
+        <p class="intro">A review needs the original identifiers, status, direction and source references. Matching amounts or dates alone cannot establish a link.</p>
         <figure class="record" aria-labelledby="record-caption">
           <div class="record-header"><span class="record-label">Synthetic canonical field structure</span><span class="record-note">Illustration only</span></div>
           <dl class="field-grid">
@@ -59,7 +59,7 @@
             <div><dt>Refunds &amp; fees</dt><dd>refund_reference · fee_amount_atomic · fee_asset_id</dd></div>
             <div><dt>Review evidence</dt><dd>review_reason · supporting_reference · unresolved_fields</dd></div>
           </dl>
-          <figcaption id="record-caption">A synthetic, canonical field illustration—not a provider’s native export, a completed data contract or a generated reconciliation result. Field availability and mappings remain to be verified.</figcaption>
+          <figcaption id="record-caption">A synthetic field illustration. The provider’s native export fields and mappings are unconfirmed.</figcaption>
         </figure>
         <div class="principles">
           <div><h3>Relationships before guesses</h3><p>The proposed rules use fixed identifiers and explicit links. They would not guess a match from approximate amounts or dates.</p></div>
@@ -69,9 +69,9 @@
       <section id="scope" aria-labelledby="h-scope">
         <p class="eyebrow">A focused starting point</p>
         <h2 id="h-scope">One workflow before broader coverage.</h2>
-        <p class="intro">The intended first scope is one provider, one chain, one stablecoin and one fixed export format for a single buyer workflow. Those choices are not yet locked, and no provider compatibility is claimed.</p>
+        <p class="intro">We plan to start with one provider, one chain, one stablecoin and one export format for a single payment team’s workflow. The provider’s export format and compatibility are unconfirmed.</p>
         <ul class="scope-list">
-          <li>Current work is research, data-contract definition and preparation for offline synthetic validation.</li>
+          <li>We are checking the data contract and testing with synthetic records. We are not accepting customer data.</li>
           <li>The proposed tool would review records. It would not move funds, sign transactions, issue refunds or automatically adjust your accounts.</li>
           <li>This work does not establish accounting certification, regulatory compliance or any exemption from licensing requirements.</li>
         </ul>
@@ -87,7 +87,7 @@
     </div>
   </main>
   <footer><div class="wrap">
-    <p>This page describes research in progress. It is not accounting, legal or investment advice. Any future review would need an agreed scope, an authorised data format and explicit limitations.</p>
+    <p>Any future review will need an agreed scope and an authorised data format. This page does not provide accounting, legal or investment advice.</p>
     <p class="product"><a href="https://doingnothingllc.com" rel="noopener noreferrer">SignWarden is a product of Doing Nothing LLC</a></p>
     <p class="updated">Last updated: <time datetime="2026-10-01">2026-10-01</time>.</p>
   </div></footer>
