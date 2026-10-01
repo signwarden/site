@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#081521">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src data:; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>SignWarden | Cryptographic inventories for digital assets</title>
@@ -22,6 +21,7 @@
       <nav aria-label="Page sections">
         <a href="#inventory">Inventory</a>
         <a href="#evidence">Evidence</a>
+        <a href="#why">Why SignWarden</a>
         <a href="#scope">Scope</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -30,8 +30,10 @@
   <main id="main">
     <div class="band">
       <div class="wrap hero">
-        <p class="asof">Digital assets / Post-quantum readiness</p>
-        <h1>Know which <em class="hl">cryptography</em> your digital assets rely on.</h1>
+        <p class="asof"><span class="signal" aria-hidden="true"></span> Digital assets / Post-quantum inventory research</p>
+        <p class="eyebrow">Evidence before certainty.</p>
+        <h1>Before change, know what you <em class="hl">depend on.</em></h1>
+        <p class="hero-subtitle">Cryptographic inventories for digital assets.</p>
         <p class="lede">SignWarden is researching cryptographic inventories for digital assets: a traceable record of algorithms, signature dependencies and observable on-chain exposure, with the sources and gaps clearly identified.</p>
         <p class="cta">
           <a class="btn primary" href="#inventory">Explore the proposed inventory</a>
@@ -40,9 +42,9 @@
         <p class="status">Status: in research. We are evaluating feasibility and scope. No inventory service or paid plan is available yet.</p>
         <figure class="chain" aria-labelledby="inventory-cap">
           <ol class="blocks">
-            <li class="block"><span class="k">Cryptographic assets</span><span class="h">Algorithms &amp; signatures</span><span class="d">Identify what is used within a defined scope.</span></li>
-            <li class="block"><span class="k">On-chain exposure</span><span class="h">Addresses &amp; control paths</span><span class="d">Separate public observations from unverified assumptions.</span></li>
-            <li class="block"><span class="k">Source evidence</span><span class="h">Locations &amp; limitations</span><span class="d">Make each supported finding traceable to its source.</span></li>
+            <li class="block"><span class="k">01 / Cryptographic assets</span><span class="h">Algorithms &amp; signatures</span><span class="d">Identify what is used within a defined scope.</span></li>
+            <li class="block"><span class="k">02 / On-chain exposure</span><span class="h">Addresses &amp; control paths</span><span class="d">Separate public observations from unverified assumptions.</span></li>
+            <li class="block"><span class="k">03 / Source evidence</span><span class="h">Locations &amp; limitations</span><span class="d">Make each supported finding traceable to its source.</span></li>
           </ol>
           <figcaption id="inventory-cap">The proposed scope of an inventory. This diagram is a research outline, not a completed assessment.</figcaption>
         </figure>
@@ -64,6 +66,14 @@
         <div class="cols">
           <div class="col"><h3>Traceable observations</h3><p>Source-code locations, contract addresses and transaction references can explain where a finding came from. Content hashes can help detect changes to a saved record.</p></div>
           <div class="col"><h3>Clear coverage gaps</h3><p>Public repositories and blockchain data cannot by themselves establish an entire custody system's cryptography, private-key lifecycle or off-chain dependencies. A hash does not establish that a claim is true.</p></div>
+        </div>
+      </section>
+      <section id="why" class="story" aria-labelledby="h-why">
+        <p class="eyebrow">Why SignWarden</p>
+        <h2 id="h-why">Evidence before certainty.</h2>
+        <div class="cols">
+          <p class="story-lead">A decision about change starts with understanding what is already there.</p>
+          <div><p>Digital assets depend on cryptography across signatures, contracts and the systems around them. Before considering a post-quantum transition, teams need a clear view of those dependencies—and of the evidence they can actually inspect.</p><p>That is the question behind SignWarden: can a scoped, source-linked inventory make those dependencies and gaps easier to discuss? We are researching that question, with unknowns visible and claims limited to their evidence.</p></div>
         </div>
       </section>
       <section id="scope" aria-labelledby="h-scope">
